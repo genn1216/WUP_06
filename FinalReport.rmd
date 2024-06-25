@@ -1,7 +1,7 @@
 ---
 title: "GSS challange More Data"
-author: "Put your name here!"
-date: "put the date here"
+author: "Genesis Alfaro"
+date: "6-17-24"
 output: html_document
 ---
 
@@ -12,14 +12,11 @@ output: html_document
 
 
 ```{r include=FALSE,echo=FALSE}
-source(file="fisherXY.R")
 require(tidyverse)
 require(tigerstats)
 require(knitr)
 require(foreign)
-GSS <-read.dta(file="GSS2016.dta")
-GSS <- droplevels(GSS)
-mydata <- select(GSS,race,cappun)
+mydata <- select(GSS,race,cappun,degree,relig,gunlaw,tvhours,owngun,age,wordsum)
 mydata <- na.omit(mydata)
 ```
 
@@ -34,6 +31,9 @@ If not, then whose view differs from whom??
 
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method. Discuss what data manipulations may be needed for example subsetting or other binning procedures and what sort of graphical displays and inferential tools will be used!-->
 
+  This is a type of categorical problem, with at least one problem with multiple levels. To account for this we will use Fisher test.
+  
+  
 # Results
 
 <!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
@@ -44,11 +44,32 @@ If not, then whose view differs from whom??
 
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question. Bottom line is to explain the features of the graph that are relevant to conforming or departing to what is expected by your null hypothesis !-->
 
+```{r}
+dd3 <- mydata %>% group_by(race,cappun) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
 
 
+# the group_by followed by summarize(count=n())
+
+basicC <- ggplot(dd3,aes(x=race,y=count,fill=cappun))
+basicC + geom_bar(stat="identity",position="dodge")
+
+#Now for percentage plot
+
+basicCC <- ggplot(dd3,aes(x=race,y=prcnt*100,fill=cappun)) 
+basicCC + geom_bar(stat="identity", position = "dodge")
+```
+
+ In this graph, the first slide displays the number of individual categorized by race, white, black and other. The white race had the with over 1500 reports, and the black and other race had less than 250 reports. In the last display the chart shows the percentage of the races in favor of capital punishment. Each category was compared to each other, the white race was compared to support versus the opposition of capital punishment and was in favor of capital punishment by approximately 64% The black race was in opposition, with a much lower percentage of around 57%. The other race was in favor of capital punishment with a near report for its opposition, the support percentage was around 55%.
+ 
+ 
 ## Now with The Most data (fewer variables gives more data points)
 
-
+```{r}
+table2 <- xtabs(~race + cappun, data=mydata)
+rowPerc(table2)
+colPerc(table2)
+```
+The summary displays that 65% of the white race was reported, 42% of the black race, and 55% of the other race were all in favor f capital punishment. This is compared to 34% of the white race in opposition of capital punishment, 57% of the black race, ad 44% of the other race.
 
 ### Numerical Descriptive Results
 
@@ -58,6 +79,9 @@ If not, then whose view differs from whom??
 
 
 ## Now with More data
+```{r}
+fisherXY(x=mydata$race, y=mydata$cappun, printAll = "TRUE")
+```
 
 
 
@@ -66,6 +90,13 @@ If not, then whose view differs from whom??
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
 
 `
+```{r}
+chisq.test(table2)
+chisqtestGC(table2)
+```
+
+
+In the inferential data we ran a CHI Square and fisher test to get results of each comparison. The first test, the CHI Square shared that the probability it pulled was equal to less than .000000000000000022. This number is too small.
 
 
 ## More data version
