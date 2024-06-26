@@ -96,12 +96,14 @@ chisqtestGC(table2)
 ```
 
 
-In the inferential data we ran a CHI Square and fisher test to get results of each comparison. The first test, the CHI Square shared that the probability it pulled was equal to less than .000000000000000022. This number is too small.
-
-
 ## More data version
-
+```{r}
+fisherXY(mydata$race,mydata$cappun, printALL= "TRUE")
+```
+In the inferential data we ran a CHI Square and fisher test to get results of each comparison. The first test, the CHI Square shared that the probability it pulled was equal to less than .000000000000000022. This number is too small.
 
 # Discussion and Conclusion
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
+
+
