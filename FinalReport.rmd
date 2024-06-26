@@ -66,16 +66,19 @@ The graphs are in the same format as in the master branch. The information is ta
 
 ## Now with LESS data (more variables give less data due to NA's) create the approate graphic displays to answer the question.
 
-
-
+The graphs are in the same format as in the master branch. The information s targeted better with a smaller scope of  observations. In the first slide there is a smaller number of the white race at around 400 reports in favor of capital punishment. This number is still at least three times larger than the other two races. Both the black and other races have less than 100 reports in favor. The opposing reports are different in te white race column, with just under half of all the favorable reports.
 
 
 ### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
-
-
+```{r}
+table1 <- xtabs(~race + cappun, data=mydata)
+rowPerc(table1)
+colPerc(table1)
+```
+In the numerical results we see similar numbers to the master branches results. The white race with 67% in favor of capital punishment. The black race contains 47% in favor, and the other race with 61%. This mimics the numbers of the chart above, and can be seen as well in the master branch.
 
 
 
