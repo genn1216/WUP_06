@@ -40,13 +40,29 @@ In this branch we are duplicating the process done in the master branch, with mo
 
 <!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
 
+
+
 ## Descriptive Results
 
 ### Graphical Descriptive Results
 
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question. Bottom line is to explain the features of the graph that are relevant to conforming or departing to what is expected by your null hypothesis !-->
 
+```{r}
+dd2 <- mydata %>% group_by(race,cappun) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
 
+
+# the group_by followed by summarize(count=n())
+
+basicC <- ggplot(dd2,aes(x=race,y=count,fill=cappun))
+basicC + geom_bar(stat="identity",position="dodge")
+
+#Now for percentage plot
+
+basicCC <- ggplot(dd2,aes(x=race,y=prcnt*100,fill=cappun)) 
+basicCC + geom_bar(stat="identity", position = "dodge")
+```
+The graphs are in the same format as in the master branch. The information is targeted better with a smaller scope of observations. In the first slide there is a smaller number of white race around 400 reports in favor of capitol punishment. This number is still almost three times larger than the other two races. Both the black and other races have less than 100 reports in favor. The opposing reports are drastically different in  the white race column, with just under half of all the favorable reports. 
 
 ## Now with LESS data (more variables give less data due to NA's) create the approate graphic displays to answer the question.
 
