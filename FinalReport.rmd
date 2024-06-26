@@ -62,7 +62,7 @@ basicC + geom_bar(stat="identity",position="dodge")
 basicCC <- ggplot(dd2,aes(x=race,y=prcnt*100,fill=cappun)) 
 basicCC + geom_bar(stat="identity", position = "dodge")
 ```
-The graphs are in the same format as in the master branch. The information is targeted better with a smaller scope of observations. In the first slide there is a smaller number of white race around 400 reports in favor of capitol punishment. This number is still almost three times larger than the other two races. Both the black and other races have less than 100 reports in favor. The opposing reports are drastically different in  the white race column, with just under half of all the favorable reports. 
+The graphs are in the same format as in the master branch. The information is targeted better with a smaller scope of observations. In the first slide there is a smaller number of white race around 400 reports in favor of capitol punishment. This number is still almost three times larger than the other two races. Both the black and other races have less than 100 reports in favor. The opposing reports are drastically different in  the white race column, with just under half of all the favorable reports.
 
 ## Now with LESS data (more variables give less data due to NA's) create the approate graphic displays to answer the question.
 
