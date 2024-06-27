@@ -89,15 +89,11 @@ In the numerical results we see similar numbers to the master branches results. 
 
 
 ```{r}
-chisq.test(table2)
-chisqtestGC(table2)
-```
-
-```{r}
 fisherXY(x=mydata$race, y=mydata$cappun, confL = .01, printAll = "TRUE") 
 ```
 
 Using the CHI test and  fisher test the numerical results gives us insight into the differences between each comparison using th new data. The CHI test information provides a probability values of less than .000000000000000022%. This number is too small.
+<Input CHI Squared test>
 The Fisher test confirms the comparisons of each race. The white race when compared to the black race was significantly different. The resulting p value was .00000174. The white and other race were compared and the p value that resulted was 0.2565. In the last section of comparison, the black and other races were compared and the resulting p value was 0.06299. This observation of the Fisher test is a replication of the process used in the master branch.
 The p value of both CHI squared test and the Fisher test are not in favor are not in favor of the results and we now reject the null hypothesis.
 
