@@ -93,7 +93,7 @@ chisqtestGC(table2)
 ````
 
 ```{r}
-fisherXY(x=mydata$race, y=mydata$cappun, printAll = "TRUE")
+fisherXY(x=mydata$race, y=mydata$cappun)
 ```
 
 # Discussion and Conclusion
